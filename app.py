@@ -3,8 +3,8 @@ while True:
     try:
         valor = int(input('Digite um Valor:'))
         if valor % 2 == 0:
-            print('Numero Par')
+            print('Número Par')
         else:
-            print('Numero impar')
+            print('Número impar')
     except:
-        print('Digite apenas numeros')
+        print('Digite apenas números')
