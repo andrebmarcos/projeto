@@ -1,30 +1,39 @@
-from ast import Break
-import PySimpleGUI as sg
-
-
-class criar_janela_inicial:
-    def __init__(self):
-        sg.theme('darkBlue4')
-        linha = [
-        [sg.Checkbox(''), sg.Input('')]
-        ]
-        # layout
-        layout = [
-        [sg.Frame('Tarefas', layout=linha, key='container')],
-        [sg.Button('Nova Tarefa'), sg.Button('Resetar')]
-    ]
-
-        return sg.Window('Todo List', layout=layout, finalize=True)
-        # Janela
-    janela = criar_janela_inicial()
-
-        # Extrair os dados da tela
-    while True:
-        event, values = janela.read()
-if event == sg.WIN_CLOSED:
-break
-if event == 'Nova Tarefa':
-       janela.extend_layout(janela['container'], [[sg.Checkbox(''), sg.Input('')]])
-elif event == 'Resetar':
-        janela.close()
-        janela = criar_janela_inicial()
+import cv2
+import time
+ 
+def main(args):
+ 
+    camera_port = 0
+  
+    nFrames = 30
+  
+    camera = cv2.VideoCapture(camera_port)
+     
+    file = "D:\YT\imagenTeste.png"
+    #sminuto = %s
+         
+    print ("Digite <ESC> para sair / <s> para Salvar")  
+     
+    emLoop= True
+      
+    while(emLoop):
+     
+        retval, img = camera.read()
+        #cv2.imshow('Foto',img)
+     
+        k = cv2.waitKey(100)
+     
+        if k == 27:
+            emLoop= False
+         
+        elif k == ord('s'):
+            cv2.imwrite(file,img)
+            emLoop= False
+     
+    cv2.destroyAllWindows()
+    camera.release()
+    return 0
+ 
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv))
